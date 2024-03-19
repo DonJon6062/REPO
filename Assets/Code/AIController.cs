@@ -41,9 +41,12 @@ public class AIController : Controller
         {
             //if target is seen
             case AIState.Guard:
+            {
                 DoGuardState();
                 IsCanSee(target);
                 break;
+            }
+
             
             
             case AIState.Chase:
@@ -230,8 +233,8 @@ public class AIController : Controller
         // Get a list of all the tanks (pawns)
         Pawn[] allTanks = Object.FindObjectsOfType<Pawn>();
 
-     // Assume that the first tank is closest
-     Pawn closestTank = allTanks[1];
+        // Assume that the first tank is closest
+        Pawn closestTank = allTanks[1];
         float closestTankDistance = Vector3.Distance(pawn.transform.position, closestTank.transform.position);
 
         // Iterate through them one at a time

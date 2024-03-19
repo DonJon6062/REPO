@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PawnSpawner : MonoBehaviour
 {
+    public GameObject AIControllerPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,6 @@ public class PawnSpawner : MonoBehaviour
 
     public void SpawnAI(PawnSpawner spawnPoint)
     { 
-        //GameObject newAiObject = Instantiate(AI Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newAiObject = Instantiate(AIControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
     }
 }

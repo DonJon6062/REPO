@@ -65,14 +65,14 @@ namespace AAA
                     Room TempRoom = TempRoomObj.GetComponent<Room>();
 
                     //save it to the array
-                    mapGrid[currentRow, currentCol] = TempRoom;
+                    mapGrid[currentCol, currentRow] = TempRoom;
 
                     //open/close doors; north and south
-                    if (currentRow == 0)
+                    if (currentCol == 0)
                     {
                         TempRoom.doorNorth.SetActive(false);
                     }
-                    else if (currentRow == rows - 1)
+                    else if (currentCol == cols - 1)
                     {
                         TempRoom.doorSouth.SetActive(false);
                     }
@@ -83,13 +83,14 @@ namespace AAA
                     }
 
                     //east and west
-                    if (currentCol == 0)
-                    {
-                        TempRoom.doorWest.SetActive(false);
-                    }
-                    else if (currentCol == cols - 1)
+                    if (currentRow == 0)
                     {
                         TempRoom.doorEast.SetActive(false);
+                    }
+                    else if (currentRow == rows - 1)
+                    {
+                        TempRoom.doorWest.SetActive(false);
+
                     }
                     else
                     {
