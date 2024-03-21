@@ -44,6 +44,7 @@ public class AIController : Controller
             {
                 DoGuardState();
                 IsCanSee(target);
+                ChangeState(AIState.Flee);
                 break;
             }
 
@@ -75,6 +76,14 @@ public class AIController : Controller
 
             case AIState.Flee:
                 //Move away from visible enemies
+                if (IsCanSee(target))
+                {
+                    Flee(target);
+                }
+                else
+                {
+                    ChangeState(AIState.Patrol);
+                }
                 break;
 
             case AIState.Attack:
@@ -159,6 +168,14 @@ public class AIController : Controller
         pawn.RotateTowards(target.transform.position);
         //move to target
         pawn.MoveForward();
+    }
+
+    public void Flee(GameObject target)
+    {
+        //rotate away from target
+        pawn.RotateTowards(target.transform.position);
+        //move away from
+        pawn.MoveBackward();
     }
 
     public void Seek(Transform targetTransform) 
