@@ -576,6 +576,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5121968668248104066, guid: 97f6837251672f14384bdfd3f89d4991, type: 3}
   NoiseMaker: {fileID: 0}
   NoiseMakerVolume: 0
+  shotSound:
+  - {fileID: 8300000, guid: bb2e2714f962491428dcb0b38598b251, type: 3}
+  - {fileID: 8300000, guid: 5ff823f546b52574a931e1d9b44290a6, type: 3}
 --- !u!54 &728429162094170365
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -664,6 +667,15 @@ MonoBehaviour:
   currentHealth: 0
   damage: 0
   maxHealth: 100
+  healSound: {fileID: 8300000, guid: 4144ed0d6abcc42479fe873c54bbe0fa, type: 3}
+  hurtSound:
+  - {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
+  - {fileID: 8300000, guid: e11a5a019377fbd4c81caa0adcb4c236, type: 3}
+  - {fileID: 8300000, guid: 0b93f9af63befa2478916a5396131fff, type: 3}
+  deathSound:
+  - {fileID: 8300000, guid: 1fd31868d68903d4f9e2c4a3b7ef98f3, type: 3}
+  - {fileID: 8300000, guid: d47e6ed162da1f740ad807d00f4679f3, type: 3}
+  - {fileID: 8300000, guid: 986d6b30567e30e428f3f21373fe45ca, type: 3}
 --- !u!1 &8780241335237032198
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 5a0466b5d0ff0b24fbfc17f2cbe7ee5b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - hurtSound: {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
+  - deathSound: {fileID: 8300000, guid: 986d6b30567e30e428f3f21373fe45ca, type: 3}
+  - healSound: {fileID: 8300000, guid: 4144ed0d6abcc42479fe873c54bbe0fa, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Tank : Pawn
 {
     private float TimeBetweenShots;
-    private float ShotDelay; 
+    private float ShotDelay;
+    [SerializeField] private AudioClip[] shotSound;
 
     // Start is called before the first frame update
     public override void Start()
@@ -63,6 +64,9 @@ public class Tank : Pawn
         {
             shooter.Shoot(bulletPrefab, fireForce, damageDone, bulletLifespan);
             TimeBetweenShots = Time.time + ShotDelay;
+
+
+            SFX_Manager.instance.PlayRandomSoundClip(shotSound, transform, 1f);
         }
     }
 
