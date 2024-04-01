@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 3656393142678015970}
   - component: {fileID: 7789923783383212550}
   - component: {fileID: 7665759174945890579}
+  - component: {fileID: -5514295919667744236}
   m_Layer: 0
   m_Name: 2nd_AI_Tank
   m_TagString: Untagged
@@ -666,7 +667,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
-  healthPercent: {fileID: 0}
   healSound: {fileID: 8300000, guid: 4144ed0d6abcc42479fe873c54bbe0fa, type: 3}
   hurtSound:
   - {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
@@ -676,6 +676,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1fd31868d68903d4f9e2c4a3b7ef98f3, type: 3}
   - {fileID: 8300000, guid: d47e6ed162da1f740ad807d00f4679f3, type: 3}
   - {fileID: 8300000, guid: 986d6b30567e30e428f3f21373fe45ca, type: 3}
+--- !u!114 &-5514295919667744236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478702485725867505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549d428a6bc66e24c91e977046830e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killCount: 50
 --- !u!1 &8780241335237032198
 GameObject:
   m_ObjectHideFlags: 0

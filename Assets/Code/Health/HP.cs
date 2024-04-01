@@ -8,7 +8,7 @@ public class HP : MonoBehaviour
     public float currentHealth;
     //public float damage;
     public float maxHealth = 100;
-    public Image healthPercent;
+    //public HealthinessMeter healthinessMeter;
 
     [SerializeField] private AudioClip healSound;
     [SerializeField] private AudioClip[] hurtSound;
@@ -17,7 +17,9 @@ public class HP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         currentHealth = maxHealth;
+        //healthinessMeter.SetMax(maxHealth);
     }
 
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class HP : MonoBehaviour
     public void TakeDamage (float amount, Pawn source)
     {
         currentHealth -= amount;
+        //healthinessMeter.SetMax(currentHealth);
         Debug.Log(source.name + " did " + amount + " damage to " + gameObject.name);
         SFX_Manager.instance.PlayRandomSoundClip(hurtSound, transform, 1f);
 
@@ -41,6 +44,7 @@ public class HP : MonoBehaviour
     public void RestoreHealth (float amount)
     {
         currentHealth += amount;
+        //healthinessMeter.SetMax(currentHealth);
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         SFX_Manager.instance.PlaySoundClip(healSound, transform, 1f);
     }

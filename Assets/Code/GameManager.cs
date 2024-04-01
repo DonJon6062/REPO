@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject cameraPlayerTwo;
 
     public List<PlayerController> Players;
+
+    private SceneAsset Game_Over;
 
     //Awake; happens when the obj is created
     private void Awake()
@@ -35,6 +39,11 @@ public class GameManager : MonoBehaviour
     {
         SpawnPlayerOne();
         SpawnPlayerTwo();
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void SpawnPlayerOne()
@@ -79,5 +88,13 @@ public class GameManager : MonoBehaviour
         newController.pawn = newPawn;
 
         cameraPlayerTwo.transform.parent = newPlayerObj.transform;
+    }
+
+    public void DieForReal(string Game_Over) 
+    {
+        if (Players == null)
+        {
+            SceneManager.LoadScene(Game_Over);
+        }
     }
 }

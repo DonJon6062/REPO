@@ -468,12 +468,14 @@ GameObject:
   - component: {fileID: 1772170851515597952}
   - component: {fileID: 2546951956741287984}
   - component: {fileID: 3020862042257101884}
-  - component: {fileID: 6284508960211630140}
   - component: {fileID: 728429162094170365}
   - component: {fileID: 4975371399683337448}
+  - component: {fileID: 6284508960211630140}
   - component: {fileID: 3656393142678015970}
   - component: {fileID: 7789923783383212550}
   - component: {fileID: 7665759174945890579}
+  - component: {fileID: 2852714135822684713}
+  - component: {fileID: 8142400818757936875}
   m_Layer: 0
   m_Name: Player_Tank
   m_TagString: Untagged
@@ -553,32 +555,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6284508960211630140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8478702485725867505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31ff54b033ca4274f8f7c4cba03aebd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  turnSpeed: 45
-  fireRate: 1
-  fireForce: 100
-  damageDone: 10
-  bulletLifespan: 3
-  mover: {fileID: 3656393142678015970}
-  shooter: {fileID: 0}
-  bulletPrefab: {fileID: 5121968668248104066, guid: 97f6837251672f14384bdfd3f89d4991, type: 3}
-  NoiseMaker: {fileID: 0}
-  NoiseMakerVolume: 0
-  shotSound:
-  - {fileID: 8300000, guid: bb2e2714f962491428dcb0b38598b251, type: 3}
-  - {fileID: 8300000, guid: 5ff823f546b52574a931e1d9b44290a6, type: 3}
 --- !u!54 &728429162094170365
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -627,6 +603,32 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.3321018
   m_Center: {x: 0.0000003874302, y: 0.06295732, z: -0.038929284}
+--- !u!114 &6284508960211630140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478702485725867505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ff54b033ca4274f8f7c4cba03aebd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  turnSpeed: 45
+  fireRate: 1
+  fireForce: 100
+  damageDone: 10
+  bulletLifespan: 3
+  mover: {fileID: 3656393142678015970}
+  shooter: {fileID: 0}
+  bulletPrefab: {fileID: 5121968668248104066, guid: 97f6837251672f14384bdfd3f89d4991, type: 3}
+  NoiseMaker: {fileID: 0}
+  NoiseMakerVolume: 0
+  shotSound:
+  - {fileID: 8300000, guid: bb2e2714f962491428dcb0b38598b251, type: 3}
+  - {fileID: 8300000, guid: 5ff823f546b52574a931e1d9b44290a6, type: 3}
 --- !u!114 &3656393142678015970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,7 +668,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
-  healthPercent: {fileID: 0}
   healSound: {fileID: 8300000, guid: 4144ed0d6abcc42479fe873c54bbe0fa, type: 3}
   hurtSound:
   - {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
@@ -676,6 +677,31 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1fd31868d68903d4f9e2c4a3b7ef98f3, type: 3}
   - {fileID: 8300000, guid: d47e6ed162da1f740ad807d00f4679f3, type: 3}
   - {fileID: 8300000, guid: 986d6b30567e30e428f3f21373fe45ca, type: 3}
+--- !u!114 &2852714135822684713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478702485725867505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204436ea38ae26f4fac2e591fd36d6bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8142400818757936875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478702485725867505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549d428a6bc66e24c91e977046830e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killCount: 50
 --- !u!1 &8780241335237032198
 GameObject:
   m_ObjectHideFlags: 0
