@@ -35,7 +35,7 @@ public class AIController : Controller
 
     public override void ProcessInputs()
     {
-        Debug.Log("Making Decisions");
+        //Debug.Log("Making Decisions");
 
         switch (currentState)
         {
@@ -106,14 +106,14 @@ public class AIController : Controller
 
     protected void DoGuardState()
     {
-        Debug.Log("Guarding");
+        //Debug.Log("Guarding");
         pawn.Shoot();
         Seek(target);
     }
 
     protected void DoChaseState() 
     {
-        Debug.Log("Chasing");
+        //Debug.Log("Chasing");
         Seek(target);
     }
 
@@ -152,12 +152,12 @@ public class AIController : Controller
     {
         if (Vector3.Distance(pawn.transform.position, target.transform.position) < distance)
         {
-            Debug.Log("True");
+            //Debug.Log("True");
             return true;
         }
         else
         {
-            Debug.Log("False");
+            //Debug.Log("False");
             return false;
         }
     }

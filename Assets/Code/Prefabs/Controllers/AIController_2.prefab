@@ -46,8 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   currentState: 0
-  target: {fileID: 0}
-  waypoints: []
+  target: {fileID: 8478702485725867505, guid: 9a102b7ecf944d346869cc711fddb7d5, type: 3}
+  waypoints:
+  - {fileID: 464208567759974081, guid: 764c1286349452d47a61e4bdb6757ae3, type: 3}
+  - {fileID: 2723185749647683488, guid: 8ffabdbeb649abd48bace6afee338014, type: 3}
+  - {fileID: 1273167967014458767, guid: a47215aecd02d904eb0f8de402ebea87, type: 3}
   WaypointStopDistance: 4
   HearingDistance: 100
   FieldOfView: 15

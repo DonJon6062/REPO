@@ -8,7 +8,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject tankPrefab;
     public GameObject playerControllerPrefab;
+    public GameObject playerControllerPrefabTwo;
     public Transform playerSpawnTransform;
+    public Transform playerSpawnTransformTwo;
+
+    public GameObject cameraPlayerOne;
+    public GameObject cameraPlayerTwo;
 
     public List<PlayerController> Players;
 
@@ -28,9 +33,11 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        SpawnPlayer();
+        SpawnPlayerOne();
+        SpawnPlayerTwo();
     }
-    public void SpawnPlayer()
+
+    public void SpawnPlayerOne()
     {
         GameObject newPlayerObj = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
@@ -45,10 +52,32 @@ public class GameManager : MonoBehaviour
         Controller newController = newPlayerObj.GetComponent<Controller>();
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
 
-        newPawnObj.AddComponent<NoiseMaker>();
-        newPawn.NoiseMaker = newPawnObj.GetComponent<NoiseMaker>();
-        newPawn.NoiseMakerVolume = 3;
+        newPawnObj.GetComponent<PowerupManager>();
 
         newController.pawn = newPawn;
+
+        cameraPlayerOne.transform.parent = newPlayerObj.transform;
+    }
+
+    public void SpawnPlayerTwo()
+    {
+        GameObject newPlayerObj = Instantiate(playerControllerPrefabTwo, Vector3.zero, Quaternion.identity) as GameObject;
+
+        GameObject newPawnObj = Instantiate(tankPrefab, playerSpawnTransformTwo.position, Quaternion.identity) as GameObject;
+
+        Controller newPlayerController = newPlayerObj.GetComponent<Controller>();
+
+        Pawn newPlayerPawn = newPawnObj.GetComponent<Pawn>();
+
+        newPlayerController.pawn = newPlayerPawn;
+
+        Controller newController = newPlayerObj.GetComponent<Controller>();
+        Pawn newPawn = newPawnObj.GetComponent<Pawn>();
+
+        newPawnObj.GetComponent<PowerupManager>();
+
+        newController.pawn = newPawn;
+
+        cameraPlayerTwo.transform.parent = newPlayerObj.transform;
     }
 }

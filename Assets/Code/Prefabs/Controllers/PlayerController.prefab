@@ -49,4 +49,4 @@ MonoBehaviour:
   moveBackwardKey: 115
   rotateClockwiseKey: 100
   rotateCounterClockwiseKey: 97
-  shootKey: 112
+  shootKey: 308

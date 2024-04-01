@@ -17,5 +17,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TankGameProject.unity
     guid: 1e259c6a30403c340915bed709dfe1e8
+  - enabled: 1
+    path: Assets/Scenes/TwoPlayer_TankGameProject.unity
+    guid: e645774626d6dc742905e45dadb8b516
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 51382cad5a0ef034aa9a70bd240be122
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
