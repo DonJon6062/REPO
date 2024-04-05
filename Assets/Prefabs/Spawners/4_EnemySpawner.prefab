@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3699777443165734152
+--- !u!1 &7681122306700434230
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8366010862280480056}
-  - component: {fileID: 1377196644957340579}
+  - component: {fileID: 3754812450359532045}
+  - component: {fileID: 3562476219709617356}
   m_Layer: 0
-  m_Name: AIController_3
+  m_Name: 4_EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8366010862280480056
+--- !u!4 &3754812450359532045
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3699777443165734152}
+  m_GameObject: {fileID: 7681122306700434230}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.680819, y: 12.229058, z: 35.79851}
+  m_LocalPosition: {x: 422.86078, y: 458.3241, z: -45.245995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1377196644957340579
+--- !u!114 &3562476219709617356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3699777443165734152}
+  m_GameObject: {fileID: 7681122306700434230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d953bbe0d5c85734ab69a5690fa9d3f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 537667586e2167c47bc450f3012a4c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pawn: {fileID: 0}
-  currentState: 0
-  target: {fileID: 8478702485725867505, guid: 79f5fcd9e1c56c544bd36ea75ab778e0, type: 3}
-  waypoints:
-  - {fileID: 464208567759974081, guid: 764c1286349452d47a61e4bdb6757ae3, type: 3}
-  - {fileID: 2723185749647683488, guid: 8ffabdbeb649abd48bace6afee338014, type: 3}
-  - {fileID: 1273167967014458767, guid: a47215aecd02d904eb0f8de402ebea87, type: 3}
-  WaypointStopDistance: 4
-  HearingDistance: 0
-  FieldOfView: 180
+  AI_TankPrefab: {fileID: 8478702485725867505, guid: 79f5fcd9e1c56c544bd36ea75ab778e0, type: 3}
+  AIControllerPrefab: {fileID: 438530826932198835, guid: 073feef8e57e8ed41a52993c615eddd1, type: 3}
+  pawnSpawnTransform: {fileID: 4564483749401542966, guid: ba1d23896267e36418022b3e906aea96, type: 3}

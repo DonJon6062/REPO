@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3754812450359532045}
   - component: {fileID: 3562476219709617356}
   m_Layer: 0
-  m_Name: 4_EnemySpawner
+  m_Name: 3_EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537667586e2167c47bc450f3012a4c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AI_TankPrefab: {fileID: 8478702485725867505, guid: 826d9dab24f8c904283bc281f6ad5194, type: 3}
-  AIControllerPrefab: {fileID: 438530826932198835, guid: 073feef8e57e8ed41a52993c615eddd1, type: 3}
-  pawnSpawnTransform: {fileID: 4564483749401542966, guid: ba1d23896267e36418022b3e906aea96, type: 3}
+  AI_TankPrefab: {fileID: 8478702485725867505, guid: 9a102b7ecf944d346869cc711fddb7d5, type: 3}
+  AIControllerPrefab: {fileID: 3699777443165734152, guid: 5a59ad567b9a5e74a878c01b089a823a, type: 3}
+  pawnSpawnTransform: {fileID: 7396106270735438634, guid: 3ddb6a9a65850a7459e3ef4664bd6b5f, type: 3}

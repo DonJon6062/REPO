@@ -6,19 +6,7 @@ public class DamageOnHit : MonoBehaviour
 {
     public float damageDone;
     public Pawn owner;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void OnTriggerEnter(Collider other)
     {
         //get health component
@@ -26,13 +14,12 @@ public class DamageOnHit : MonoBehaviour
         if (otherHP != null)
         {
             otherHP.TakeDamage(damageDone, owner);
-            //Debug.Log("Hit!");
+            Debug.Log("Hit!");
         }
-        else 
+        else
         {
-            //Debug.Log("Null!");
+            Debug.Log("Null");
         }
-
         Destroy(gameObject);
     }
 }

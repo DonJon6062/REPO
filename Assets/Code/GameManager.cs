@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject tankPrefab;
+    public GameObject tankPrefabTwo;
+
     public GameObject playerControllerPrefab;
     public GameObject playerControllerPrefabTwo;
+
     public Transform playerSpawnTransform;
     public Transform playerSpawnTransformTwo;
 
@@ -18,8 +21,6 @@ public class GameManager : MonoBehaviour
     public GameObject cameraPlayerTwo;
 
     public List<PlayerController> Players;
-
-    private SceneAsset Game_Over;
 
     //Awake; happens when the obj is created
     private void Awake()
@@ -40,12 +41,6 @@ public class GameManager : MonoBehaviour
         SpawnPlayerOne();
         SpawnPlayerTwo();
     }
-
-    private void Update()
-    {
-        
-    }
-
     public void SpawnPlayerOne()
     {
         GameObject newPlayerObj = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -72,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject newPlayerObj = Instantiate(playerControllerPrefabTwo, Vector3.zero, Quaternion.identity) as GameObject;
 
-        GameObject newPawnObj = Instantiate(tankPrefab, playerSpawnTransformTwo.position, Quaternion.identity) as GameObject;
+        GameObject newPawnObj = Instantiate(tankPrefabTwo, playerSpawnTransformTwo.position, Quaternion.identity) as GameObject;
 
         Controller newPlayerController = newPlayerObj.GetComponent<Controller>();
 
@@ -90,11 +85,11 @@ public class GameManager : MonoBehaviour
         cameraPlayerTwo.transform.parent = newPlayerObj.transform;
     }
 
-    public void DieForReal(string Game_Over) 
+    public void DieForReal() 
     {
         if (Players == null)
         {
-            SceneManager.LoadScene(Game_Over);
+            SceneManager.LoadScene("Game_Over");
         }
     }
 }

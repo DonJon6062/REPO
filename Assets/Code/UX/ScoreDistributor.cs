@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ScoreDistributor : MonoBehaviour
 {
-    [SerializeField] private int killCount;
+    public int killCount;
 
-    private ScoreSystem scoreSystem;
+    public ScoreSystem scoreSystem;
 
     private void Awake()
     {

@@ -5,7 +5,7 @@ using TMPro;
 
 public class ScoreUI : MonoBehaviour
 {
-    private TMP_Text totalScore;
+    public TMP_Text totalScore;
 
     void Awake()
     {
