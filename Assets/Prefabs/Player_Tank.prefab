@@ -475,8 +475,8 @@ GameObject:
   - component: {fileID: 7789923783383212550}
   - component: {fileID: 8142400818757936875}
   - component: {fileID: 7194852637420406685}
-  - component: {fileID: -8005468893212448055}
-  - component: {fileID: -9066362751169108953}
+  - component: {fileID: 7271358881242322066}
+  - component: {fileID: -5092364167885880511}
   m_Layer: 0
   m_Name: Player_Tank
   m_TagString: Untagged
@@ -620,7 +620,7 @@ MonoBehaviour:
   turnSpeed: 45
   fireRate: 1
   fireForce: 100
-  damageDone: 10
+  damageDone: 50
   bulletLifespan: 3
   mover: {fileID: 3656393142678015970}
   shooter: {fileID: 0}
@@ -684,7 +684,7 @@ MonoBehaviour:
   onScoreChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5803420654266500757, guid: fb3969c72e593c24a93bd8b5c72e4715, type: 3}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 0
@@ -697,7 +697,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   scoreText: {fileID: 8721509920580335775, guid: fb3969c72e593c24a93bd8b5c72e4715, type: 3}
---- !u!114 &-8005468893212448055
+--- !u!114 &7271358881242322066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -706,11 +706,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8478702485725867505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0466b5d0ff0b24fbfc17f2cbe7ee5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 80f100fc5535e1c408353a5061f5cab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
   maxHealth: 100
+  currentHealth: 0
   healthinessMeter: {fileID: 5658330880196841060, guid: 32c22eb7dddd3f0429a34af39d2537b6, type: 3}
   lives: 3
   healSound: {fileID: 8300000, guid: 4144ed0d6abcc42479fe873c54bbe0fa, type: 3}
@@ -719,10 +719,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e11a5a019377fbd4c81caa0adcb4c236, type: 3}
   - {fileID: 8300000, guid: 0b93f9af63befa2478916a5396131fff, type: 3}
   deathSound:
-  - {fileID: 8300000, guid: 986d6b30567e30e428f3f21373fe45ca, type: 3}
   - {fileID: 8300000, guid: 1fd31868d68903d4f9e2c4a3b7ef98f3, type: 3}
+  - {fileID: 8300000, guid: 986d6b30567e30e428f3f21373fe45ca, type: 3}
   - {fileID: 8300000, guid: d47e6ed162da1f740ad807d00f4679f3, type: 3}
---- !u!114 &-9066362751169108953
+--- !u!114 &-5092364167885880511
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8478702485725867505}
-  spawnPoint: {fileID: 8539283589955227987, guid: d281a248e01c99746a2b27e8f87b52ac, type: 3}
+  respawnPoint: {fileID: 8539283589955227987, guid: d281a248e01c99746a2b27e8f87b52ac, type: 3}
 --- !u!1 &8780241335237032198
 GameObject:
   m_ObjectHideFlags: 0

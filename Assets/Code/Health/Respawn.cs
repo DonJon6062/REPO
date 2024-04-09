@@ -5,10 +5,10 @@ using UnityEngine;
 public class Respawn : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    [SerializeField] Transform spawnPoint;
+    [SerializeField] Transform respawnPoint;
 
-    public void RespawnPlayer(Pawn source) 
+    public void RespawnPlayer() 
     {
-        player.transform.position = spawnPoint.transform.position;
+        player.transform.position = respawnPoint.transform.position;
     }
 }

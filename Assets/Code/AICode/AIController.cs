@@ -208,7 +208,7 @@ public class AIController : Controller
         Vector3 agentToTargetVector = target.transform.position - transform.position;
         // Find the angle between the direction our agent is facing (forward in local space) and the vector to the target.
         float AngleToTarget = Vector3.Angle(agentToTargetVector, pawn.transform.forward);
-        Debug.Log(AngleToTarget);
+        //Debug.Log(AngleToTarget);
         // if that angle is less than our field of view
         if (AngleToTarget < FieldOfView)
         {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tank : Pawn
 {
+    readonly private Pawn tankPawn;
     private float TimeBetweenShots;
     private float ShotDelay;
     [SerializeField] private AudioClip[] shotSound;
@@ -36,38 +37,36 @@ public class Tank : Pawn
 
     public override void MoveForward()
     {
-        Debug.Log("Move Forward");
+        //Debug.Log("Move Forward");
         mover.Move(transform.forward, moveSpeed);
     }
 
     public override void MoveBackward()
     {
-        Debug.Log("Move Backward");
+        //Debug.Log("Move Backward");
         mover.Move(transform.forward, -moveSpeed);
     }
 
     public override void RotateClockwise()
     {
-        Debug.Log("Rotate Clockwise");
+        //Debug.Log("Rotate Clockwise");
         mover.Rotate(turnSpeed);
     }
 
     public override void RotateCounterClockwise()
     {
-        Debug.Log("Rotate Counter-Clockwise");
+        //Debug.Log("Rotate Counter-Clockwise");
         mover.Rotate(-turnSpeed);
     }
 
     public override void Shoot()
     {
-        if (Time.time >= TimeBetweenShots)
-        {
-            shooter.Shoot(bulletPrefab, fireForce, damageDone, bulletLifespan);
-            TimeBetweenShots = Time.time + ShotDelay;
-
-
-            SFX_Manager.instance.PlayRandomSoundClip(shotSound, transform, 1f);
-        }
+            if (Time.time >= TimeBetweenShots)
+            {
+                shooter.Shoot(bulletPrefab, fireForce, damageDone, bulletLifespan);
+                TimeBetweenShots = Time.time + ShotDelay;
+                SFX_Manager.instance.PlayRandomSoundClip(shotSound, transform, 1f);
+            }
     }
 
     public override void RotateTowards(Vector3 targetPosition)
