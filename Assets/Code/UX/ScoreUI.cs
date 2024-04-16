@@ -6,6 +6,7 @@ using TMPro;
 public class ScoreUI : MonoBehaviour
 {
     public TMP_Text totalScore;
+    public int scoreCount;
 
     void Awake()
     {

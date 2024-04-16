@@ -5,17 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour
 {
-    [SerializeField] private AudioClip clickSound;
-    public void GoToScene(string sceneName) 
+    public void ChangeToTitleScreen() 
     {
-        SceneManager.LoadScene(sceneName);
-        SFX_Manager.instance.PlaySoundClip(clickSound, transform, 1f);
-    }
-
-    public void QuitApp() 
-    {
-        SFX_Manager.instance.PlaySoundClip(clickSound, transform, 1f);
-        Application.Quit();
-        Debug.Log("Quit");
+        if (GameManager.instance != null) 
+        {
+            GameManager.instance.ActivateTitleScreenState();
+        }
     }
 }

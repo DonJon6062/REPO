@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] private AudioClip clickSound;
+
     public GameObject tankPrefab;
     public GameObject tankPrefabTwo;
 
@@ -22,6 +24,11 @@ public class GameManager : MonoBehaviour
 
     public List<PlayerController> Players;
 
+    public GameObject TitleScreenState;
+    public GameObject LevelSelectState;
+    public GameObject OptionsState;
+    public GameObject GameOverState;
+
     //Awake; happens when the obj is created
     private void Awake()
     {
@@ -35,11 +42,46 @@ public class GameManager : MonoBehaviour
             //if gameManager already exists
             Destroy(gameObject);
         }
+
+        ActivateTitleScreenState();
     }
+
     private void Start()
     {
         SpawnPlayerOne();
         SpawnPlayerTwo();
+    }
+
+    public void ActivateTitleScreenState()
+    {
+        //SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+        TitleScreenState.SetActive(true);
+        
+        Debug.Log("Changed to TitleScreen!");
+    }
+    public void ActivateLevelSelectState()
+    {
+        SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+        LevelSelectState.SetActive(true);
+        Debug.Log("Changed to LevelSelect!");
+    }
+    public void ActivateOptionsState()
+    {
+        SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+        OptionsState.SetActive(true);
+        Debug.Log("Changed to Options!");
+    }
+    public void ActivateGameOverState()
+    {
+        SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+        GameOverState.SetActive(true);
+        Debug.Log("Changed to GameOver!");
+    }
+    public void QuitApp()
+    {
+        SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+        Application.Quit();
+        Debug.Log("Quit");
     }
     public void SpawnPlayerOne()
     {
@@ -83,13 +125,5 @@ public class GameManager : MonoBehaviour
         newController.pawn = newPawn;
 
         cameraPlayerTwo.transform.parent = newPlayerObj.transform;
-    }
-
-    public void DieForReal() 
-    {
-        if (Players == null)
-        {
-            SceneManager.LoadScene("Game_Over");
-        }
     }
 }

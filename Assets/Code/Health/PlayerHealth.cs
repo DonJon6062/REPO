@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -16,18 +16,18 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private AudioClip[] hurtSound;
     [SerializeField] private AudioClip[] deathSound;
 
-
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        healthinessMeter = GetComponentInChildren<HealthinessMeter>();
         healthinessMeter.SetMax(maxHealth);
     }
 
     public void TakeDamage(float amount, Pawn source)
     {
         currentHealth -= amount;
-        healthinessMeter.SetHealth(currentHealth/maxHealth);
+        healthinessMeter.SetHealth(currentHealth);
         //Debug.Log(source.name + " did " + amount + " damage to " + gameObject.name);
         SFX_Manager.instance.PlayRandomSoundClip(hurtSound, transform, 1f);
 
@@ -45,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
     public void RestoreHealth(float amount)
     {
         currentHealth += amount;
-        healthinessMeter.SetHealth(currentHealth/maxHealth);
+        healthinessMeter.SetHealth(currentHealth);
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         SFX_Manager.instance.PlaySoundClip(healSound, transform, 1f);
     }
@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
         lives -= 1;
         if (lives <= 0)
         {
-            SceneManager.LoadScene("Game_Over");
+            GameManager.instance.ActivateGameOverState();
         }
         else
         {
@@ -67,4 +67,10 @@ public class PlayerHealth : MonoBehaviour
             healthinessMeter.SetMax(maxHealth);
         }
     }
+
+    //public void SetHealthBar(Canvas canvas, Camera camera) 
+    //{
+    //    HealthinessMeter.transform.SetParent(canvas.transform);
+    //    if (HealthinessMeter.TryGetComponent<FaceCamera>(out facecam))
+    //}
 }

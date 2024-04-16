@@ -41,4 +41,17 @@ public class SFX_Manager : MonoBehaviour
 
         Destroy(audioSource.gameObject, clipLength);
     }
+
+    public void PlayClickSound(AudioClip audioClip, float volume) 
+    {
+        AudioSource audioSource = Instantiate(SFX_Obj);
+
+        audioSource.clip = audioClip;
+
+        audioSource.Play();
+
+        float clipLength = audioSource.clip.length;
+
+        Destroy(audioSource.gameObject, clipLength);
+    }
 }

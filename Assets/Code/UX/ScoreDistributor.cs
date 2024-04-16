@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ScoreDistributor : MonoBehaviour
 {
-    public int killCount;
+    [SerializeField] private int killCount;
 
-    public ScoreSystem scoreSystem;
+    private ScoreSystem scoreSystem;
+
 
     private void Awake()
     {
-        scoreSystem = GetComponent<ScoreSystem>();
+        scoreSystem = gameObject.GetComponent<ScoreSystem>();
     }
 
     public void DistributeScore() 
