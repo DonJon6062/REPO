@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour
     public GameObject OptionsState;
     public GameObject GameOverState;
 
+    //Boolean TwoPlayerVariable = false;
+
     //Awake; happens when the obj is created
     private void Awake()
     {
@@ -49,33 +52,55 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SpawnPlayerOne();
-        SpawnPlayerTwo();
     }
 
     public void ActivateTitleScreenState()
     {
         //SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         TitleScreenState.SetActive(true);
-        
-        Debug.Log("Changed to TitleScreen!");
     }
     public void ActivateLevelSelectState()
     {
         SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         LevelSelectState.SetActive(true);
-        Debug.Log("Changed to LevelSelect!");
     }
     public void ActivateOptionsState()
     {
         SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         OptionsState.SetActive(true);
-        Debug.Log("Changed to Options!");
     }
     public void ActivateGameOverState()
     {
         SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         GameOverState.SetActive(true);
-        Debug.Log("Changed to GameOver!");
+    }
+
+    public void SinglePlayerState() 
+    {
+        SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+
+        //Deactivate canvases en masse
+        TitleScreenState.SetActive(false);
+        LevelSelectState.SetActive(false);
+        OptionsState.SetActive(false);
+        GameOverState.SetActive(false);
+
+        //TwoPlayerVariable = false;
+        tankPrefabTwo.SetActive(false);
+        Debug.Log("One Player Playing");
+    }
+    public void TwoPlayerGameState() 
+    {
+        SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+
+        //Deactivate canvases en masse
+        TitleScreenState.SetActive(false);
+        LevelSelectState.SetActive(false);
+        OptionsState.SetActive(false);
+        GameOverState.SetActive(false);
+
+        SpawnPlayerTwo();
+        Debug.Log("Two Players Playing!");
     }
     public void QuitApp()
     {
@@ -107,23 +132,23 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayerTwo()
     {
-        GameObject newPlayerObj = Instantiate(playerControllerPrefabTwo, Vector3.zero, Quaternion.identity) as GameObject;
+            GameObject newPlayerObj = Instantiate(playerControllerPrefabTwo, Vector3.zero, Quaternion.identity) as GameObject;
 
-        GameObject newPawnObj = Instantiate(tankPrefabTwo, playerSpawnTransformTwo.position, Quaternion.identity) as GameObject;
+            GameObject newPawnObj = Instantiate(tankPrefabTwo, playerSpawnTransformTwo.position, Quaternion.identity) as GameObject;
 
-        Controller newPlayerController = newPlayerObj.GetComponent<Controller>();
+            Controller newPlayerController = newPlayerObj.GetComponent<Controller>();
 
-        Pawn newPlayerPawn = newPawnObj.GetComponent<Pawn>();
+            Pawn newPlayerPawn = newPawnObj.GetComponent<Pawn>();
 
-        newPlayerController.pawn = newPlayerPawn;
+            newPlayerController.pawn = newPlayerPawn;
 
-        Controller newController = newPlayerObj.GetComponent<Controller>();
-        Pawn newPawn = newPawnObj.GetComponent<Pawn>();
+            Controller newController = newPlayerObj.GetComponent<Controller>();
+            Pawn newPawn = newPawnObj.GetComponent<Pawn>();
 
-        newPawnObj.GetComponent<PowerupManager>();
+            newPawnObj.GetComponent<PowerupManager>();
 
-        newController.pawn = newPawn;
+            newController.pawn = newPawn;
 
-        cameraPlayerTwo.transform.parent = newPlayerObj.transform;
+            cameraPlayerTwo.transform.parent = newPlayerObj.transform;
     }
 }

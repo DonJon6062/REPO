@@ -58,6 +58,9 @@ public class PlayerHealth : MonoBehaviour
         if (lives <= 0)
         {
             GameManager.instance.ActivateGameOverState();
+            maxHealth = 100;
+            currentHealth = maxHealth;
+            lives = 3;
         }
         else
         {
@@ -67,10 +70,4 @@ public class PlayerHealth : MonoBehaviour
             healthinessMeter.SetMax(maxHealth);
         }
     }
-
-    //public void SetHealthBar(Canvas canvas, Camera camera) 
-    //{
-    //    HealthinessMeter.transform.SetParent(canvas.transform);
-    //    if (HealthinessMeter.TryGetComponent<FaceCamera>(out facecam))
-    //}
 }
