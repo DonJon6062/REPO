@@ -13,6 +13,7 @@ public class GameStartAgain : MonoBehaviour
 
     public void OnGameRestart() 
     {
+
         if (AI_TankPrefab_1 == null) 
         {
             SpawnPawn = GetComponent<SpawnPawn>();

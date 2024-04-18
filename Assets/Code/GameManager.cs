@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public GameObject LevelSelectState;
     public GameObject OptionsState;
     public GameObject GameOverState;
+    public GameObject PlayerTwoUI;
 
     Boolean TwoPlayerVariable = false;
 
@@ -86,9 +87,11 @@ public class GameManager : MonoBehaviour
         LevelSelectState.SetActive(false);
         OptionsState.SetActive(false);
         GameOverState.SetActive(false);
+        PlayerTwoUI.SetActive(false);
 
         cameraPlayerTwo.SetActive(false);
         cameraPlayerOne.SetActive(false);
+        singlePlayerCamera.SetActive(true);
 
         TwoPlayerVariable = false;
         
@@ -107,6 +110,7 @@ public class GameManager : MonoBehaviour
         LevelSelectState.SetActive(false);
         OptionsState.SetActive(false);
         GameOverState.SetActive(false);
+        PlayerTwoUI.SetActive(true);
 
         singlePlayerCamera.SetActive(false);
         cameraPlayerTwo.SetActive(true);
