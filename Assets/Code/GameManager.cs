@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject cameraPlayerOne;
     public GameObject cameraPlayerTwo;
+    public GameObject singlePlayerCamera;
 
     public List<PlayerController> Players;
 
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     public GameObject OptionsState;
     public GameObject GameOverState;
 
-    //Boolean TwoPlayerVariable = false;
+    Boolean TwoPlayerVariable = false;
 
     //Awake; happens when the obj is created
     private void Awake()
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         //SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         TitleScreenState.SetActive(true);
+        tankPrefabTwo.SetActive(true);
     }
     public void ActivateLevelSelectState()
     {
@@ -85,8 +87,15 @@ public class GameManager : MonoBehaviour
         OptionsState.SetActive(false);
         GameOverState.SetActive(false);
 
-        //TwoPlayerVariable = false;
-        tankPrefabTwo.SetActive(false);
+        cameraPlayerTwo.SetActive(false);
+        cameraPlayerOne.SetActive(false);
+
+        TwoPlayerVariable = false;
+        
+        if (tankPrefabTwo != null)
+        {
+            tankPrefabTwo.SetActive(false);
+        }
         Debug.Log("One Player Playing");
     }
     public void TwoPlayerGameState() 
@@ -99,7 +108,16 @@ public class GameManager : MonoBehaviour
         OptionsState.SetActive(false);
         GameOverState.SetActive(false);
 
-        SpawnPlayerTwo();
+        singlePlayerCamera.SetActive(false);
+        cameraPlayerTwo.SetActive(true);
+        cameraPlayerOne.SetActive(true);
+        
+        TwoPlayerVariable = true;
+        
+        if (tankPrefabTwo != null) 
+        {
+            SpawnPlayerTwo();
+        }
         Debug.Log("Two Players Playing!");
     }
     public void QuitApp()
@@ -127,7 +145,15 @@ public class GameManager : MonoBehaviour
 
         newController.pawn = newPawn;
 
-        cameraPlayerOne.transform.parent = newPlayerObj.transform;
+        if (cameraPlayerOne != null) 
+        {
+            cameraPlayerOne.transform.parent = newPawnObj.transform;
+        }
+
+        if (TwoPlayerVariable == false)
+        {
+            singlePlayerCamera.transform.parent = newPawnObj.transform;
+        }
     }
 
     public void SpawnPlayerTwo()
@@ -149,6 +175,6 @@ public class GameManager : MonoBehaviour
 
             newController.pawn = newPawn;
 
-            cameraPlayerTwo.transform.parent = newPlayerObj.transform;
+            cameraPlayerTwo.transform.parent = newPawnObj.transform;
     }
 }

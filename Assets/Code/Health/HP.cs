@@ -17,10 +17,6 @@ public class HP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnPawn spawnPawn = GetComponent<SpawnPawn>();
-        spawnPawn.SpawnThePawn();
-
-
         currentHealth = maxHealth;
         healthinessMeter = GetComponentInChildren<HealthinessMeter>();
         healthinessMeter.SetMax(maxHealth);
@@ -54,5 +50,8 @@ public class HP : MonoBehaviour
     {
         BegonePawn begonePawn = GetComponent<BegonePawn>();
         begonePawn.GoAwayPawn();
+        maxHealth = 100;
+        currentHealth = maxHealth;
+        healthinessMeter.SetMax(maxHealth);
     }
 }

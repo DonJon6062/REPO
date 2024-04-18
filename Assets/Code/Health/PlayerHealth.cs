@@ -60,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
             GameManager.instance.ActivateGameOverState();
             maxHealth = 100;
             currentHealth = maxHealth;
+            healthinessMeter.SetMax(maxHealth);
             lives = 3;
         }
         else
