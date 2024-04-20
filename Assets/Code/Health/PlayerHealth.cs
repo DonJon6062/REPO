@@ -9,8 +9,9 @@ public class PlayerHealth : MonoBehaviour
     public float currentHealth;
     
     public HealthinessMeter healthinessMeter;
+    public LivesToText livesToText;
     
-    [SerializeField] private int lives;
+    public int lives = 3;
 
     [SerializeField] private AudioClip healSound;
     [SerializeField] private AudioClip[] hurtSound;
@@ -20,8 +21,12 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        
         healthinessMeter = GetComponentInChildren<HealthinessMeter>();
         healthinessMeter.SetMax(maxHealth);
+
+        livesToText = GetComponentInChildren<LivesToText>();
+        livesToText.LivesText(lives);
     }
 
     public void TakeDamage(float amount, Pawn source)
@@ -34,11 +39,6 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             WasKilled(source);
-        }
-        else if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            TakeDamage(20, source);
-            Debug.Log("Owie");
         }
     }
 
@@ -55,6 +55,8 @@ public class PlayerHealth : MonoBehaviour
         //Debug.Log(source.name + " destroyed " + gameObject.name);
         SFX_Manager.instance.PlayRandomSoundClip(deathSound, transform, 1f);
         lives -= 1;
+        livesToText.LivesText(lives);
+        
         if (lives <= 0)
         {
             GameManager.instance.ActivateGameOverState();
@@ -62,6 +64,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
             healthinessMeter.SetMax(maxHealth);
             lives = 3;
+            livesToText.LivesText(lives);
         }
         else
         {

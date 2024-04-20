@@ -5,10 +5,10 @@ using TMPro;
 
 public class LivesToText : MonoBehaviour
 {
-    private int livesNumber;
+    public TextMeshProUGUI livesText;
 
-    private void Awake()
+    public void LivesText(int lives)
     {
-        //livesNumber = PlayerHealth
+        livesText.text = $"Lives: {lives}";
     }
 }
