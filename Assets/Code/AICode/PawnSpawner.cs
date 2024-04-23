@@ -25,8 +25,7 @@ public class PawnSpawner : MonoBehaviour
         SpawnAI_4();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RespawnPawns() 
     {
         
     }

@@ -8,7 +8,7 @@ public class SpawnPawn : MonoBehaviour
 
     public void SpawnThePawn() 
     {
-        if (pawnNotPresesnt != null) 
+        if (pawnNotPresesnt == null) 
         {
             pawnNotPresesnt.SetActive(true);
         }

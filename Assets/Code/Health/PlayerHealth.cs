@@ -29,6 +29,21 @@ public class PlayerHealth : MonoBehaviour
         livesToText.LivesText(lives);
     }
 
+    private void Update()
+    {
+        GameObject[] Tanks = GameObject.FindGameObjectsWithTag("PlayerTank");
+        GameObject[] AITanks = GameObject.FindGameObjectsWithTag("TankPawn");
+        
+        if (AITanks.Length! < 1 && Tanks.Length <= 1)
+        {
+            GameManager.instance.ActivateWinScreenState();
+            maxHealth = 100;
+            currentHealth = maxHealth;
+            healthinessMeter.SetMax(maxHealth);
+            lives = 3;
+            livesToText.LivesText(lives);
+        }
+    }
     public void TakeDamage(float amount, Pawn source)
     {
         currentHealth -= amount;
@@ -52,19 +67,35 @@ public class PlayerHealth : MonoBehaviour
 
     public void WasKilled(Pawn source)
     {
-        //Debug.Log(source.name + " destroyed " + gameObject.name);
         SFX_Manager.instance.PlayRandomSoundClip(deathSound, transform, 1f);
         lives -= 1;
         livesToText.LivesText(lives);
-        
+
+        GameObject[] Tanks = GameObject.FindGameObjectsWithTag("PlayerTank");
+        GameObject[] AITanks = GameObject.FindGameObjectsWithTag("TankPawn");
+
         if (lives <= 0)
         {
-            GameManager.instance.ActivateGameOverState();
-            maxHealth = 100;
-            currentHealth = maxHealth;
-            healthinessMeter.SetMax(maxHealth);
-            lives = 3;
-            livesToText.LivesText(lives);
+            if (Tanks.Length > 1)
+            {
+                BegonePawn begonePawn = GetComponent<BegonePawn>();
+                begonePawn.GoAwayPawn();
+                
+                maxHealth = 100;
+                currentHealth = maxHealth;
+                healthinessMeter.SetMax(maxHealth);
+                lives = 3;
+                livesToText.LivesText(lives);
+            }
+            else
+            {
+                GameManager.instance.ActivateGameOverState();
+                maxHealth = 100;
+                currentHealth = maxHealth;
+                healthinessMeter.SetMax(maxHealth);
+                lives = 3;
+                livesToText.LivesText(lives);
+            }
         }
         else
         {

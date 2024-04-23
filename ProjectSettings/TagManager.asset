@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - TankPawn
+  - AITank_1
+  - AITank_2
+  - AITank_3
+  - AITank_4
+  - PlayerTank
   layers:
   - Default
   - TransparentFX

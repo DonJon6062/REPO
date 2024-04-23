@@ -48,8 +48,20 @@ public class HP : MonoBehaviour
 
     public void Die(Pawn source)
     {
+        GameObject[] Tanks = GameObject.FindGameObjectsWithTag("PlayerTank");
+        GameObject[] AITanks = GameObject.FindGameObjectsWithTag("TankPawn");
+        if (Tanks.Length !< 1)
+        {
+            GameManager.instance.ActivateGameOverState();
+        }
+        
+        if (AITanks.Length !< 1 && Tanks.Length <= 1)
+        {
+            GameManager.instance.ActivateWinScreenState();
+        }
         BegonePawn begonePawn = GetComponent<BegonePawn>();
         begonePawn.GoAwayPawn();
+        
         maxHealth = 100;
         currentHealth = maxHealth;
         healthinessMeter.SetMax(maxHealth);

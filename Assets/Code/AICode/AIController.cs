@@ -248,14 +248,14 @@ public class AIController : Controller
     protected void TargetNearestTank()
     {
         // Get a list of all the tanks (pawns)
-        Pawn[] allTanks = Object.FindObjectsOfType<Pawn>();
+        GameObject[] allTanks = GameObject.FindGameObjectsWithTag("TankPawn");
 
         // Assume that the first tank is closest
-        Pawn closestTank = allTanks[1];
+        GameObject closestTank = allTanks[1];
         float closestTankDistance = Vector3.Distance(pawn.transform.position, closestTank.transform.position);
 
         // Iterate through them one at a time
-        foreach (Pawn tank in allTanks)
+        foreach (GameObject tank in allTanks)
         {
             // If this one is closer than the closest
             if (Vector3.Distance(pawn.transform.position, tank.transform.position) <= closestTankDistance)

@@ -475,11 +475,10 @@ GameObject:
   - component: {fileID: 7789923783383212550}
   - component: {fileID: 7665759174945890579}
   - component: {fileID: 6347442350070690140}
-  - component: {fileID: -3506923334834363838}
   - component: {fileID: 335529121863319706}
   m_Layer: 0
   m_Name: 3rd_AI_Tank
-  m_TagString: Untagged
+  m_TagString: TankPawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -693,19 +692,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killCount: 50
---- !u!114 &-3506923334834363838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8478702485725867505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d247539a41f570438bc632428eb56de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pawnNotPresesnt: {fileID: 8478702485725867505}
 --- !u!114 &335529121863319706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,6 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankPresent: {fileID: 8478702485725867505}
+  tankController: {fileID: 3699777443165734152, guid: 5a59ad567b9a5e74a878c01b089a823a, type: 3}
 --- !u!1 &8780241335237032198
 GameObject:
   m_ObjectHideFlags: 0

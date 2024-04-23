@@ -7,6 +7,7 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    #region variables
     public static GameManager instance;
 
     [SerializeField] private AudioClip clickSound;
@@ -30,10 +31,24 @@ public class GameManager : MonoBehaviour
     public GameObject LevelSelectState;
     public GameObject OptionsState;
     public GameObject GameOverState;
+    public GameObject WinScreenState;
     public GameObject PlayerTwoUI;
 
     Boolean TwoPlayerVariable = false;
 
+    public GameObject AI_TankPrefab;
+    public GameObject AI_TankPrefab_2;
+    public GameObject AI_TankPrefab_3;
+    public GameObject AI_TankPrefab_4;
+
+    public GameObject AIControllerPrefab;
+    public GameObject AIControllerPrefab_2;
+    public GameObject AIControllerPrefab_3;
+    public GameObject AIControllerPrefab_4;
+
+    public Transform pawnSpawnTransform;
+    #endregion variables
+    #region startCode
     //Awake; happens when the obj is created
     private void Awake()
     {
@@ -54,11 +69,15 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SpawnPlayerOne();
+        SpawnAI();
+        SpawnAI_2();
+        SpawnAI_3();
+        SpawnAI_4();
     }
-
+    #endregion startCode
+    #region states
     public void ActivateTitleScreenState()
     {
-        //SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         TitleScreenState.SetActive(true);
         tankPrefabTwo.SetActive(true);
     }
@@ -77,18 +96,25 @@ public class GameManager : MonoBehaviour
         SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         GameOverState.SetActive(true);
     }
+    public void ActivateWinScreenState() 
+    {
+        //SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+        WinScreenState.SetActive(true);
+    }
+    #endregion states
 
     public void SinglePlayerState() 
     {
         SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+        DeactivateCanvases();
 
-        //Deactivate canvases en masse
-        TitleScreenState.SetActive(false);
-        LevelSelectState.SetActive(false);
-        OptionsState.SetActive(false);
-        GameOverState.SetActive(false);
         PlayerTwoUI.SetActive(false);
 
+        //respawns behind the scenes
+        RespawnAIs();
+        Debug.Log("AI Coming back!");
+
+        //correct cameras
         cameraPlayerTwo.SetActive(false);
         cameraPlayerOne.SetActive(false);
         singlePlayerCamera.SetActive(true);
@@ -104,18 +130,17 @@ public class GameManager : MonoBehaviour
     public void TwoPlayerGameState() 
     {
         SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+        DeactivateCanvases();
 
-        //Deactivate canvases en masse
-        TitleScreenState.SetActive(false);
-        LevelSelectState.SetActive(false);
-        OptionsState.SetActive(false);
-        GameOverState.SetActive(false);
+        RespawnAIs();
         PlayerTwoUI.SetActive(true);
 
+        //Correct Cameras
         singlePlayerCamera.SetActive(false);
         cameraPlayerTwo.SetActive(true);
         cameraPlayerOne.SetActive(true);
         
+        //This variable
         TwoPlayerVariable = true;
         
         if (tankPrefabTwo != null) 
@@ -124,12 +149,55 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Two Players Playing!");
     }
+
+    public void SecondPlayerActive() 
+    {
+        //This variable
+        TwoPlayerVariable = true;
+
+        tankPrefabTwo.SetActive(true);
+    }
     public void QuitApp()
     {
         SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         Application.Quit();
         Debug.Log("Quit");
     }
+
+    public void RespawnAIs() 
+    {
+        AI_TankPrefab.SetActive(true);
+        AI_TankPrefab_2.SetActive(true);
+        AI_TankPrefab_3.SetActive(true);
+        AI_TankPrefab_4.SetActive(true);
+
+        if (AI_TankPrefab.activeSelf != true)
+        {
+            Debug.Log("AI_1 Back!");
+            AIControllerPrefab.SetActive(true);
+            SpawnAI();
+        }
+        if (AI_TankPrefab_2.activeSelf != true)
+        {
+            Debug.Log("AI_2 Back!");
+            AIControllerPrefab_2.SetActive(true);
+            SpawnAI_2();
+        }
+        if (AI_TankPrefab_3.activeSelf != true)
+        {
+            Debug.Log("AI_3 Back!");
+            AIControllerPrefab_3.SetActive(true);
+            SpawnAI_3();
+        }
+        if (AI_TankPrefab_4.activeSelf != true)
+        {
+            Debug.Log("AI_4 Back!");
+            AIControllerPrefab_4.SetActive(true);
+            SpawnAI_4();
+        }
+    }
+
+    #region spawnCodes
     public void SpawnPlayerOne()
     {
         GameObject newPlayerObj = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -151,12 +219,12 @@ public class GameManager : MonoBehaviour
 
         if (cameraPlayerOne != null) 
         {
-            cameraPlayerOne.transform.parent = newPawnObj.transform;
+            cameraPlayerOne.transform.parent = newPlayerObj.transform;
         }
 
         if (TwoPlayerVariable == false)
         {
-            singlePlayerCamera.transform.parent = newPawnObj.transform;
+            singlePlayerCamera.transform.parent = newPlayerObj.transform;
         }
     }
 
@@ -179,6 +247,83 @@ public class GameManager : MonoBehaviour
 
             newController.pawn = newPawn;
 
-            cameraPlayerTwo.transform.parent = newPawnObj.transform;
+            cameraPlayerTwo.transform.parent = newPlayerObj.transform;
+    }
+
+    public void SpawnAI()
+    {
+        AI_TankPrefab.SetActive(true);
+        AIControllerPrefab.SetActive(true);
+
+        GameObject newAITank = Instantiate(AI_TankPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newAIController = Instantiate(AIControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+
+        Controller newController = newAIController.GetComponent<AIController>();
+
+        Pawn newAIPawn = newAITank.GetComponent<Pawn>();
+
+        newAITank.AddComponent<PowerupManager>();
+
+        newController.pawn = newAIPawn;
+    }
+    public void SpawnAI_2()
+    {
+        AI_TankPrefab_2.SetActive(true);
+        AIControllerPrefab_2.SetActive(true);
+
+        GameObject newAITank_2 = Instantiate(AI_TankPrefab_2, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newAIController_2 = Instantiate(AIControllerPrefab_2, Vector3.zero, Quaternion.identity) as GameObject;
+
+        Controller newController_2 = newAIController_2.GetComponent<AIController>();
+
+        Pawn newAIPawn_2 = newAITank_2.GetComponent<Pawn>();
+
+        newAITank_2.AddComponent<PowerupManager>();
+
+        newController_2.pawn = newAIPawn_2;
+    }
+
+    public void SpawnAI_3()
+    {
+        AI_TankPrefab_3.SetActive(true);
+        AIControllerPrefab_3.SetActive(true);
+
+        GameObject newAITank_3 = Instantiate(AI_TankPrefab_3, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newAIController_3 = Instantiate(AIControllerPrefab_3, Vector3.zero, Quaternion.identity) as GameObject;
+
+        Controller newController_3 = newAIController_3.GetComponent<AIController>();
+
+        Pawn newAIPawn_3 = newAITank_3.GetComponent<Pawn>();
+
+        newAITank_3.AddComponent<PowerupManager>();
+
+        newController_3.pawn = newAIPawn_3;
+    }
+    public void SpawnAI_4()
+    {
+        AI_TankPrefab_4.SetActive(true);
+        AIControllerPrefab_4.SetActive(true);
+
+        GameObject newAITank_4 = Instantiate(AI_TankPrefab_4, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newAIController_4 = Instantiate(AIControllerPrefab_4, Vector3.zero, Quaternion.identity) as GameObject;
+
+        Controller newController_4 = newAIController_4.GetComponent<AIController>();
+
+        Pawn newAIPawn_4 = newAITank_4.GetComponent<Pawn>();
+
+        newAITank_4.AddComponent<PowerupManager>();
+
+        newController_4.pawn = newAIPawn_4;
+    }
+    #endregion spawnCodes
+
+    public void DeactivateCanvases()
+    {
+        //Deactivate canvases en masse
+        TitleScreenState.SetActive(false);
+        LevelSelectState.SetActive(false);
+        OptionsState.SetActive(false);
+        GameOverState.SetActive(false);
+        WinScreenState.SetActive(false);
     }
 }
