@@ -66,15 +66,4 @@ public class PlayerController : Controller
             pawn.StopNoise();
         }
     }
-
-    public void OnDestroy()
-    {
-        if (GameManager.instance != null)
-        {
-            if (GameManager.instance.Players != null) 
-            {
-                GameManager.instance.Players.Remove(this);
-            }
-        }
-    }
 }

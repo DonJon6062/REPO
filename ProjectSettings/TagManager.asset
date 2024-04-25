@@ -5,11 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - TankPawn
-  - AITank_1
-  - AITank_2
-  - AITank_3
-  - AITank_4
   - PlayerTank
+  - ScoreP1
+  - ScoreP2
   layers:
   - Default
   - TransparentFX

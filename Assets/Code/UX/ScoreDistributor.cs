@@ -1,21 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreDistributor : MonoBehaviour
 {
-    [SerializeField] private int killCount;
-
-    private ScoreSystem scoreSystem;
-
-
-    private void Awake()
+    [SerializeField] private int scoreAmount;
+    public void AddScore(Collider other, Pawn source)
     {
-        scoreSystem = gameObject.GetComponent<ScoreSystem>();
-    }
+        Debug.Log("AddScore!");
+        Debug.Log(source.name + " killed you!");
 
-    public void DistributeScore() 
-    {
-        scoreSystem.AddScore(killCount);
+        ScoreSystem scoreSystem = source.gameObject.GetComponent<ScoreSystem>();
+        ScoreUI scoreUI = FindAnyObjectByType<ScoreUI>();
+        ScoreUI_2 scoreUI_2 = FindAnyObjectByType<ScoreUI_2>();
+
+        if (scoreSystem != null)
+        {
+            scoreSystem.AddScore(scoreAmount);
+            scoreUI.UpdateScore(scoreAmount);
+
+            Debug.Log("Added to P1!");
+        }
+
+        ScoreManager scoreManager = source.gameObject.GetComponent<ScoreManager>();
+
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(scoreAmount);
+            scoreUI_2.UpdateScoreP2(scoreAmount);
+
+            Debug.Log("Added to P2!");
+        }
     }
 }

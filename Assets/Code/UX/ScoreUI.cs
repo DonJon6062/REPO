@@ -6,15 +6,13 @@ using TMPro;
 public class ScoreUI : MonoBehaviour
 {
     public TMP_Text totalScore;
-    public int scoreCount;
 
-    void Awake()
+    private void Awake()
     {
         totalScore = GetComponent<TMP_Text>();
     }
-
-    public void UpdateScore(ScoreSystem scoreSystem)
+    public void UpdateScore(int amount)
     {
-        totalScore.text = $"Score: {scoreSystem.scoreText}";
+        totalScore.text = $"Score: {amount}";
     }
 }

@@ -15,13 +15,12 @@ public class DamageOnHit : MonoBehaviour
 
         if (playerHealth != null)
         {
-            playerHealth.TakeDamage(damageDone, owner);
-            Debug.Log("Hit!");
+            playerHealth.TakeDamage(damageDone, owner, other);
         }
 
         if (otherHP != null)
         {
-            otherHP.TakeDamage(damageDone, owner);
+            otherHP.TakeDamage(damageDone, owner, other);
         }
         Destroy(gameObject);
     }

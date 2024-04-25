@@ -1,23 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public TMP_Text scoreText;
-    public static int scoreCount;
+    public int ScoreCount { get; private set; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public UnityEvent onScoreChanged;
 
-    // Update is called once per frame
-    void Update()
+    public void AddScore(int amount)
     {
-        scoreText.text = "Score: " + Mathf.Round(scoreCount); 
+        ScoreCount += amount;
+        onScoreChanged.Invoke();
     }
 }

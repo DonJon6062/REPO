@@ -571,8 +571,8 @@ MonoBehaviour:
   moveSpeed: 3
   turnSpeed: 45
   fireRate: 1
-  fireForce: 100
-  damageDone: 10
+  fireForce: 500
+  damageDone: 50
   bulletLifespan: 3
   mover: {fileID: 3656393142678015970}
   shooter: {fileID: 0}
@@ -679,6 +679,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 958408b32ccf3714ea02821877b0870c, type: 3}
   - {fileID: 8300000, guid: 2e071f5b8b8467d45a5e6e24c23c6ad4, type: 3}
   - {fileID: 8300000, guid: 7b69beceabbd8f24e8bc62d77ac7ca1c, type: 3}
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-5514295919667744236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549d428a6bc66e24c91e977046830e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killCount: 50
+  scoreAmount: 50
 --- !u!114 &1513267470418647633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,7 +708,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankPresent: {fileID: 8478702485725867505}
-  tankController: {fileID: 5703901656779702776, guid: a4f1816735a916448a602927dcb1829a, type: 3}
 --- !u!1 &8780241335237032198
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using TMPro;
 
 public class LivesToText : MonoBehaviour
 {
-    public TextMeshProUGUI livesText;
+    public TMP_Text livesText;
 
     public void LivesText(int lives)
     {

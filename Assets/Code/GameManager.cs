@@ -69,10 +69,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SpawnPlayerOne();
-        SpawnAI();
-        SpawnAI_2();
-        SpawnAI_3();
-        SpawnAI_4();
     }
     #endregion startCode
     #region states
@@ -98,21 +94,22 @@ public class GameManager : MonoBehaviour
     }
     public void ActivateWinScreenState() 
     {
-        //SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         WinScreenState.SetActive(true);
     }
+    public void QuitApp()
+    {
+        SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+        Application.Quit();
+        Debug.Log("Quit");
+    }
     #endregion states
-
+    #region GameStates
     public void SinglePlayerState() 
     {
         SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         DeactivateCanvases();
 
         PlayerTwoUI.SetActive(false);
-
-        //respawns behind the scenes
-        RespawnAIs();
-        Debug.Log("AI Coming back!");
 
         //correct cameras
         cameraPlayerTwo.SetActive(false);
@@ -125,14 +122,13 @@ public class GameManager : MonoBehaviour
         {
             tankPrefabTwo.SetActive(false);
         }
-        Debug.Log("One Player Playing");
+        //Debug.Log("One Player Playing");
     }
     public void TwoPlayerGameState() 
     {
         SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         DeactivateCanvases();
 
-        RespawnAIs();
         PlayerTwoUI.SetActive(true);
 
         //Correct Cameras
@@ -147,9 +143,9 @@ public class GameManager : MonoBehaviour
         {
             SpawnPlayerTwo();
         }
-        Debug.Log("Two Players Playing!");
+        //Debug.Log("Two Players Playing!");
     }
-
+    #endregion GameStates
     public void SecondPlayerActive() 
     {
         //This variable
@@ -157,44 +153,53 @@ public class GameManager : MonoBehaviour
 
         tankPrefabTwo.SetActive(true);
     }
-    public void QuitApp()
-    {
-        SFX_Manager.instance.PlayClickSound(clickSound, 1f);
-        Application.Quit();
-        Debug.Log("Quit");
-    }
 
-    public void RespawnAIs() 
+    public void ActivatePawns() 
     {
         AI_TankPrefab.SetActive(true);
         AI_TankPrefab_2.SetActive(true);
         AI_TankPrefab_3.SetActive(true);
         AI_TankPrefab_4.SetActive(true);
+    }
 
-        if (AI_TankPrefab.activeSelf != true)
+    public void RespawnAI_1() 
+    {
+        if (AI_TankPrefab != null)
         {
-            Debug.Log("AI_1 Back!");
-            AIControllerPrefab.SetActive(true);
+            //Debug.Log("AI_1 Back!");
             SpawnAI();
         }
-        if (AI_TankPrefab_2.activeSelf != true)
+    }
+    public void RespawnAI_2()
+    {
+        if (AI_TankPrefab_2 != null)
         {
-            Debug.Log("AI_2 Back!");
-            AIControllerPrefab_2.SetActive(true);
+            //Debug.Log("AI_2 Back!");
             SpawnAI_2();
         }
-        if (AI_TankPrefab_3.activeSelf != true)
+    }
+    public void RespawnAI_3()
+    {
+        if (AI_TankPrefab_3 != null)
         {
-            Debug.Log("AI_3 Back!");
-            AIControllerPrefab_3.SetActive(true);
+            //Debug.Log("AI_3 Back!");
             SpawnAI_3();
         }
-        if (AI_TankPrefab_4.activeSelf != true)
+    }
+    public void RespawnAI_4()
+    {
+        if (AI_TankPrefab_4 != null)
         {
-            Debug.Log("AI_4 Back!");
-            AIControllerPrefab_4.SetActive(true);
+            //Debug.Log("AI_4 Back!");
             SpawnAI_4();
         }
+    }
+    public void RespawnAIs() 
+    {
+        RespawnAI_1();
+        RespawnAI_2();
+        RespawnAI_3();
+        RespawnAI_4();
     }
 
     #region spawnCodes
@@ -224,7 +229,7 @@ public class GameManager : MonoBehaviour
 
         if (TwoPlayerVariable == false)
         {
-            singlePlayerCamera.transform.parent = newPlayerObj.transform;
+            singlePlayerCamera.transform.parent = newPawnObj.transform;
         }
     }
 

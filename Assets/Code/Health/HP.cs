@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HP : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class HP : MonoBehaviour
     [SerializeField] private AudioClip[] hurtSound;
     [SerializeField] private AudioClip[] deathSound;
 
+    public UnityEvent OnDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +24,7 @@ public class HP : MonoBehaviour
         healthinessMeter.SetMax(maxHealth);
     }
 
-    public void TakeDamage(float amount, Pawn source)
+    public void TakeDamage(float amount, Pawn source, Collider other)
     {
         if (source != null) 
         {
@@ -32,7 +34,8 @@ public class HP : MonoBehaviour
 
             if (currentHealth <= 0)
             {
-                Die(source);
+                Die(source, other);
+                //OnDeath.Invoke();
             }
         }
 
@@ -46,8 +49,11 @@ public class HP : MonoBehaviour
         SFX_Manager.instance.PlaySoundClip(healSound, transform, 1f);
     }
 
-    public void Die(Pawn source)
+    public void Die(Pawn source, Collider other)
     {
+        ScoreDistributor scoreDistributor = GetComponent<ScoreDistributor>();
+        scoreDistributor.AddScore(other, source);
+
         GameObject[] Tanks = GameObject.FindGameObjectsWithTag("PlayerTank");
         GameObject[] AITanks = GameObject.FindGameObjectsWithTag("TankPawn");
         if (Tanks.Length !< 1)

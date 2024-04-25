@@ -7,8 +7,8 @@ using TMPro;
 
 public class ScoreSystem : MonoBehaviour
 {
-    public TMP_Text scoreText;
-    public static int ScoreCount { get; private set; }
+    //on player 
+    public int ScoreCount { get; private set; }
 
     public UnityEvent onScoreChanged;
 

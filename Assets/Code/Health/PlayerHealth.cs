@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using static Unity.VisualScripting.Member;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     public LivesToText livesToText;
     
     public int lives = 3;
+
+    //[SerializeField] int scoreAmount;
 
     [SerializeField] private AudioClip healSound;
     [SerializeField] private AudioClip[] hurtSound;
@@ -44,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
             livesToText.LivesText(lives);
         }
     }
-    public void TakeDamage(float amount, Pawn source)
+    public void TakeDamage(float amount, Pawn source, Collider other)
     {
         currentHealth -= amount;
         healthinessMeter.SetHealth(currentHealth);
@@ -53,7 +57,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            WasKilled(source);
+            WasKilled(source, other);
+            //OnDeath.Invoke();
         }
     }
 
@@ -64,15 +69,14 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         SFX_Manager.instance.PlaySoundClip(healSound, transform, 1f);
     }
-
-    public void WasKilled(Pawn source)
+    public void WasKilled(Pawn source, Collider other)
     {
         SFX_Manager.instance.PlayRandomSoundClip(deathSound, transform, 1f);
         lives -= 1;
         livesToText.LivesText(lives);
 
         GameObject[] Tanks = GameObject.FindGameObjectsWithTag("PlayerTank");
-        GameObject[] AITanks = GameObject.FindGameObjectsWithTag("TankPawn");
+
 
         if (lives <= 0)
         {
