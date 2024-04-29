@@ -51,4 +51,13 @@ public abstract class Pawn : MonoBehaviour
     public abstract void RotateTowards(Vector3 targetPosition);
     public abstract void MakeNoise();
     public abstract void StopNoise();
+    public void AdjustSpeed(float speedAdded) 
+    {
+        moveSpeed += speedAdded;
+    }
+
+    public void AdjustDamage(float damageAdded) 
+    {
+        damageDone += damageAdded;
+    }
 }

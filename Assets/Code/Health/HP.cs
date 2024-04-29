@@ -14,9 +14,6 @@ public class HP : MonoBehaviour
     [SerializeField] private AudioClip[] hurtSound;
     [SerializeField] private AudioClip[] deathSound;
 
-    public UnityEvent OnDeath;
-
-    // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
@@ -35,7 +32,6 @@ public class HP : MonoBehaviour
             if (currentHealth <= 0)
             {
                 Die(source, other);
-                //OnDeath.Invoke();
             }
         }
 
@@ -56,6 +52,7 @@ public class HP : MonoBehaviour
 
         GameObject[] Tanks = GameObject.FindGameObjectsWithTag("PlayerTank");
         GameObject[] AITanks = GameObject.FindGameObjectsWithTag("TankPawn");
+        
         if (Tanks.Length !< 1)
         {
             GameManager.instance.ActivateGameOverState();
@@ -65,6 +62,7 @@ public class HP : MonoBehaviour
         {
             GameManager.instance.ActivateWinScreenState();
         }
+        
         BegonePawn begonePawn = GetComponent<BegonePawn>();
         begonePawn.GoAwayPawn();
         

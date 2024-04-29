@@ -15,13 +15,10 @@ public class PlayerHealth : MonoBehaviour
     
     public int lives = 3;
 
-    //[SerializeField] int scoreAmount;
-
     [SerializeField] private AudioClip healSound;
     [SerializeField] private AudioClip[] hurtSound;
     [SerializeField] private AudioClip[] deathSound;
 
-    // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
@@ -52,13 +49,11 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= amount;
         healthinessMeter.SetHealth(currentHealth);
-        //Debug.Log(source.name + " did " + amount + " damage to " + gameObject.name);
         SFX_Manager.instance.PlayRandomSoundClip(hurtSound, transform, 1f);
 
         if (currentHealth <= 0)
         {
             WasKilled(source, other);
-            //OnDeath.Invoke();
         }
     }
 
@@ -69,14 +64,17 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         SFX_Manager.instance.PlaySoundClip(healSound, transform, 1f);
     }
+
     public void WasKilled(Pawn source, Collider other)
     {
         SFX_Manager.instance.PlayRandomSoundClip(deathSound, transform, 1f);
         lives -= 1;
         livesToText.LivesText(lives);
 
-        GameObject[] Tanks = GameObject.FindGameObjectsWithTag("PlayerTank");
+        ScoreDistributor scoreDistributor = GetComponent<ScoreDistributor>();
+        scoreDistributor.AddScore(other, source);
 
+        GameObject[] Tanks = GameObject.FindGameObjectsWithTag("PlayerTank");
 
         if (lives <= 0)
         {

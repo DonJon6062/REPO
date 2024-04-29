@@ -8,6 +8,7 @@ TagManager:
   - PlayerTank
   - ScoreP1
   - ScoreP2
+  - SpawnPoints
   layers:
   - Default
   - TransparentFX

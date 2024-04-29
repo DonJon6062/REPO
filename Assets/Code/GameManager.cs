@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEditor;
 using System;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,8 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerControllerPrefab;
     public GameObject playerControllerPrefabTwo;
 
-    public Transform playerSpawnTransform;
-    public Transform playerSpawnTransformTwo;
+    public Transform[] SpawnTransform;
 
     public GameObject cameraPlayerOne;
     public GameObject cameraPlayerTwo;
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject TitleScreenState;
     public GameObject LevelSelectState;
+    public GameObject SeedSelectState;
     public GameObject OptionsState;
     public GameObject GameOverState;
     public GameObject WinScreenState;
@@ -46,7 +47,6 @@ public class GameManager : MonoBehaviour
     public GameObject AIControllerPrefab_3;
     public GameObject AIControllerPrefab_4;
 
-    public Transform pawnSpawnTransform;
     #endregion variables
     #region startCode
     //Awake; happens when the obj is created
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnPlayerOne();
+        //SpawnPlayerOne();
     }
     #endregion startCode
     #region states
@@ -81,6 +81,12 @@ public class GameManager : MonoBehaviour
     {
         SFX_Manager.instance.PlayClickSound(clickSound, 1f);
         LevelSelectState.SetActive(true);
+    }
+
+    public void ActivateMapSeedState() 
+    {
+        SFX_Manager.instance.PlayClickSound(clickSound, 1f);
+        SeedSelectState.SetActive(true);
     }
     public void ActivateOptionsState()
     {
@@ -122,7 +128,6 @@ public class GameManager : MonoBehaviour
         {
             tankPrefabTwo.SetActive(false);
         }
-        //Debug.Log("One Player Playing");
     }
     public void TwoPlayerGameState() 
     {
@@ -143,7 +148,6 @@ public class GameManager : MonoBehaviour
         {
             SpawnPlayerTwo();
         }
-        //Debug.Log("Two Players Playing!");
     }
     #endregion GameStates
     public void SecondPlayerActive() 
@@ -166,7 +170,6 @@ public class GameManager : MonoBehaviour
     {
         if (AI_TankPrefab != null)
         {
-            //Debug.Log("AI_1 Back!");
             SpawnAI();
         }
     }
@@ -174,7 +177,6 @@ public class GameManager : MonoBehaviour
     {
         if (AI_TankPrefab_2 != null)
         {
-            //Debug.Log("AI_2 Back!");
             SpawnAI_2();
         }
     }
@@ -182,7 +184,6 @@ public class GameManager : MonoBehaviour
     {
         if (AI_TankPrefab_3 != null)
         {
-            //Debug.Log("AI_3 Back!");
             SpawnAI_3();
         }
     }
@@ -190,7 +191,6 @@ public class GameManager : MonoBehaviour
     {
         if (AI_TankPrefab_4 != null)
         {
-            //Debug.Log("AI_4 Back!");
             SpawnAI_4();
         }
     }
@@ -205,9 +205,11 @@ public class GameManager : MonoBehaviour
     #region spawnCodes
     public void SpawnPlayerOne()
     {
+        int random = Random.Range(0, SpawnTransform.Length);
+
         GameObject newPlayerObj = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
-        GameObject newPawnObj = Instantiate(tankPrefab, playerSpawnTransform.position, Quaternion.identity) as GameObject;
+        GameObject newPawnObj = Instantiate(tankPrefab, SpawnTransform[random].position, Quaternion.identity) as GameObject;
 
         Controller newPlayerController = newPlayerObj.GetComponent<Controller>();
 
@@ -224,7 +226,7 @@ public class GameManager : MonoBehaviour
 
         if (cameraPlayerOne != null) 
         {
-            cameraPlayerOne.transform.parent = newPlayerObj.transform;
+            cameraPlayerOne.transform.parent = newPawnObj.transform;
         }
 
         if (TwoPlayerVariable == false)
@@ -235,9 +237,11 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayerTwo()
     {
+            int random = Random.Range(0, SpawnTransform.Length);
+
             GameObject newPlayerObj = Instantiate(playerControllerPrefabTwo, Vector3.zero, Quaternion.identity) as GameObject;
 
-            GameObject newPawnObj = Instantiate(tankPrefabTwo, playerSpawnTransformTwo.position, Quaternion.identity) as GameObject;
+            GameObject newPawnObj = Instantiate(tankPrefabTwo, SpawnTransform[random].position, Quaternion.identity) as GameObject;
 
             Controller newPlayerController = newPlayerObj.GetComponent<Controller>();
 
@@ -252,15 +256,17 @@ public class GameManager : MonoBehaviour
 
             newController.pawn = newPawn;
 
-            cameraPlayerTwo.transform.parent = newPlayerObj.transform;
+            cameraPlayerTwo.transform.parent = newPawnObj.transform;
     }
 
     public void SpawnAI()
     {
+        int random = Random.Range(0, SpawnTransform.Length);
+
         AI_TankPrefab.SetActive(true);
         AIControllerPrefab.SetActive(true);
 
-        GameObject newAITank = Instantiate(AI_TankPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newAITank = Instantiate(AI_TankPrefab, SpawnTransform[random].position, Quaternion.identity) as GameObject;
         GameObject newAIController = Instantiate(AIControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
         Controller newController = newAIController.GetComponent<AIController>();
@@ -273,10 +279,12 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnAI_2()
     {
+        int random = Random.Range(0, SpawnTransform.Length);
+
         AI_TankPrefab_2.SetActive(true);
         AIControllerPrefab_2.SetActive(true);
 
-        GameObject newAITank_2 = Instantiate(AI_TankPrefab_2, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newAITank_2 = Instantiate(AI_TankPrefab_2, SpawnTransform[random].position, Quaternion.identity) as GameObject;
         GameObject newAIController_2 = Instantiate(AIControllerPrefab_2, Vector3.zero, Quaternion.identity) as GameObject;
 
         Controller newController_2 = newAIController_2.GetComponent<AIController>();
@@ -290,10 +298,12 @@ public class GameManager : MonoBehaviour
 
     public void SpawnAI_3()
     {
+        int random = Random.Range(0, SpawnTransform.Length);
+
         AI_TankPrefab_3.SetActive(true);
         AIControllerPrefab_3.SetActive(true);
 
-        GameObject newAITank_3 = Instantiate(AI_TankPrefab_3, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newAITank_3 = Instantiate(AI_TankPrefab_3, SpawnTransform[random].position, Quaternion.identity) as GameObject;
         GameObject newAIController_3 = Instantiate(AIControllerPrefab_3, Vector3.zero, Quaternion.identity) as GameObject;
 
         Controller newController_3 = newAIController_3.GetComponent<AIController>();
@@ -306,10 +316,12 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnAI_4()
     {
+        int random = Random.Range(0, SpawnTransform.Length);
+
         AI_TankPrefab_4.SetActive(true);
         AIControllerPrefab_4.SetActive(true);
 
-        GameObject newAITank_4 = Instantiate(AI_TankPrefab_4, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject newAITank_4 = Instantiate(AI_TankPrefab_4, SpawnTransform[random].position, Quaternion.identity) as GameObject;
         GameObject newAIController_4 = Instantiate(AIControllerPrefab_4, Vector3.zero, Quaternion.identity) as GameObject;
 
         Controller newController_4 = newAIController_4.GetComponent<AIController>();
@@ -327,6 +339,7 @@ public class GameManager : MonoBehaviour
         //Deactivate canvases en masse
         TitleScreenState.SetActive(false);
         LevelSelectState.SetActive(false);
+        SeedSelectState.SetActive(false);
         OptionsState.SetActive(false);
         GameOverState.SetActive(false);
         WinScreenState.SetActive(false);

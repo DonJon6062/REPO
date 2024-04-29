@@ -6,7 +6,6 @@ public class DamageOnHit : MonoBehaviour
 {
     public float damageDone;
     public Pawn owner;
-    
     public void OnTriggerEnter(Collider other)
     {
         //get health component
